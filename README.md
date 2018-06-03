@@ -1,0 +1,1 @@
+# Prenos Dat Semestrálka Ciesarik
