@@ -4,7 +4,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
             <#if !(data??)>
-              <#assign data = {"id":-1,"znamka":-1}> 
+              <#assign data = {"idData":-1,"znamka":"FX"}> 
             </#if>
             <title>Edit Data</title>
             <link rel="stylesheet" type="text/css" href="/assets/view.css" media="all">
@@ -16,13 +16,13 @@
                         <div id="form_container">
 
                             <h1><a>Form</a></h1>
-                             <#if data.id != -1>
+                             <#if data.idData != -1>
                                 <form id="form_9436" class="appnitro"  method="post" action=".">
                              <#else>
                                 <form id="form_9436" class="appnitro" method="post" action="./edit">
                              </#if>
                                     <div class="form_description">
-                                    <#if data.id != -1>
+                                    <#if data.idData != -1>
                                         <h2>Edit Data</h2>
                                     <#else>
                                         <h2>Edit Data</h2>

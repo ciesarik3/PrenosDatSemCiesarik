@@ -4,7 +4,7 @@
    <head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
       <#if !(data??)>
-      <#assign data = {"id":-1,"znamka":-1,"WemosHexaID":-1}> 
+      <#assign data = {"idData":-1,"znamka":"FX","WemosHexaID":"0000"}> 
       </#if>
       <title>List of Data</title>
       <link rel="stylesheet" type="text/css" href="/assets/view.css" media="all">
@@ -12,9 +12,9 @@
       <script type="text/javascript" src="/assets/view.js"></script>
       <script type="text/javascript" src="/assets/jquery-3.3.1.min.js"></script>
       <script type="text/javascript">
-        function deleteData(id){
+        function deleteData(idData){
            $.ajax({
-            url: '/data/'+id,
+            url: '/data/'+idData,
             type: 'DELETE',
             success: function(result) {
                 alert('Item Deleted');
@@ -36,7 +36,7 @@
          <#list datas>
          <ul>
             <#items as data>
-            <li><p> WemosHexaID: ${data.WemosHexaID}znamka: ${data.znamka} timestamp: ${data.getDatumZapisut()} | <a href="/data/edit/${data.id}"><i class="fas fa-pencil-alt"></i></a> <a href="javascript:void(0);" onclick="deleteData(${data.id});"><i class="fas fa-trash-alt"></i></a></p></li>
+            <li><p> WemosHexaID: ${data.WemosHexaID}znamka: ${data.znamka} timestamp: ${data.getDatumZapisut()} | <a href="/data/edit/${data.idData}"><i class="fas fa-pencil-alt"></i></a> <a href="javascript:void(0);" onclick="deleteData(${data.idData});"><i class="fas fa-trash-alt"></i></a></p></li>
             </#items>
          </ul>
          <#else>

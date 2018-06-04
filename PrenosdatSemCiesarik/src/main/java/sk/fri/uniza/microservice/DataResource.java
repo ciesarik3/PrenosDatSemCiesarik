@@ -47,8 +47,8 @@ public class DataResource {
     @Path("/add")
     @Produces(MediaType.APPLICATION_JSON)
     @UnitOfWork
-    public Data getAddForm(@DefaultValue("0") @QueryParam("WemosHexaID") long WemosHexaID,@DefaultValue("0") @QueryParam("znamka") float znamka) {
-        return dataDAO.create(new Data(new Float(znamka),new Long(WemosHexaID)));
+    public Data getAddForm(@DefaultValue("0") @QueryParam("WemosHexaID") String WemosHexaID,@DefaultValue("0") @QueryParam("znamka") String znamka) {
+        return dataDAO.create(new Data(new String(znamka),new String(WemosHexaID)));
     }
       
     /**
@@ -75,10 +75,10 @@ public class DataResource {
      */    
     @DELETE
     @RolesAllowed("ADMIN")
-    @Path("/{id}")
+    @Path("/{idData}")
     @Produces(MediaType.APPLICATION_JSON)
     @UnitOfWork
-    public Data deleteData2(@PathParam("id") LongParam idData) {
+    public Data deleteData2(@PathParam("idData") LongParam idData) {
         Optional<Data> result = dataDAO.findById(idData.get());
         if (result.isPresent()) {
             dataDAO.delete(result.get());
@@ -95,10 +95,10 @@ public class DataResource {
      * @return DataAddEditView 
      */      
     @GET
-    @Path("/edit/{id}")
+    @Path("/edit/{idData}")
     @Produces(MediaType.TEXT_HTML)
     @UnitOfWork
-    public DataAddEditView getEditForm(@PathParam("id") LongParam idData) {
+    public DataAddEditView getEditForm(@PathParam("idData") LongParam idData) {
         Optional<Data> result = dataDAO.findById(idData.get());
 
         if (result.isPresent()) {
@@ -120,13 +120,13 @@ public class DataResource {
     @Produces(MediaType.TEXT_HTML)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @UnitOfWork
-    public DataView editData(@FormParam("id") String idData, @FormParam("znamka") Float znamka) {
+    public DataView editData(@FormParam("idData") String idData, @FormParam("znamka") String znamka) {
         Optional<Data> result = dataDAO.findById(Long.parseLong(idData));
         if (result.isPresent()) {
             result.get().setZnamka(znamka);
             return new DataView(result.get());
         } else {
-            Data create = dataDAO.create(new Data(znamka,new Long(0)));
+            Data create = dataDAO.create(new Data(znamka,new String("0")));
             return new DataView(create);
         }
     }
@@ -139,10 +139,10 @@ public class DataResource {
      * @return DataView 
      */      
     @GET
-    @Path("/{id}")
+    @Path("/{idData}")
     @Produces(MediaType.TEXT_HTML)
     @UnitOfWork
-    public DataView getData(@PathParam("id") LongParam idData) {
+    public DataView getData(@PathParam("idData") LongParam idData) {
         Optional<Data> result = dataDAO.findById(idData.get());
 
         if (result.isPresent()) {
@@ -173,10 +173,10 @@ public class DataResource {
      * @return DataListView  
      */      
     @GET
-    @Path("/delete/{id}")
+    @Path("/delete/{idData}")
     @Produces(MediaType.TEXT_HTML)
     @UnitOfWork
-    public DataListView deleteData(@PathParam("id") LongParam idData) {
+    public DataListView deleteData(@PathParam("idData") LongParam idData) {
         Optional<Data> result = dataDAO.findById(idData.get());
         if (result.isPresent()) {
             dataDAO.delete(result.get());

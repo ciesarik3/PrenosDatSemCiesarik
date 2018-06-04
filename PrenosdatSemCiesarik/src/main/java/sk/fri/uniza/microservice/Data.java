@@ -36,7 +36,7 @@ public class Data {
     * @param  znamka  
     * @param  WemosHexaID 
     */
-    public Data(Float znamka,Long WemosHexaID) {
+    public Data(String znamka,String WemosHexaID) {
         this.znamka = znamka;
         Calendar cal=Calendar.getInstance();
         datumZapisu = "Y:"+cal.get(Calendar.YEAR)+" M:"+(cal.get(Calendar.MONTH)+1)+" D:"+cal.get(Calendar.DAY_OF_MONTH);
@@ -50,10 +50,10 @@ public class Data {
     private Long idData; 
 
     @Column(name = "znamka")
-    private Float znamka;
+    private String znamka;
 
     @Column(name = "WemosHexaID")
-    private Long WemosHexaID;//id zariadenia
+    private String WemosHexaID;//id zariadenia
     
     @Column(name = "datumZapisu")
     String datumZapisu;
@@ -63,7 +63,7 @@ public class Data {
    * @return idData 
    */
     @JsonProperty
-    public Long getId() {
+    public Long getIdData() {
         return idData;
     }
   
@@ -71,7 +71,7 @@ public class Data {
    * setter "idData"
    * @param  idData
    */    
-    public void setId(long idData){
+    public void setIdData(long idData){
     this.idData=idData;
     }
  
@@ -81,14 +81,14 @@ public class Data {
    */
     @JsonProperty
     public String getZnamka() {
-        return znamka.toString().replace(",",".");
+        return znamka;
     }
     
    /**
    * setter "znamka"
    * @param  znamka  
    */  
-    public void setZnamka(Float znamka) {
+    public void setZnamka(String znamka) {
         this.znamka = znamka;
     }
     
@@ -96,7 +96,7 @@ public class Data {
    * setter "WemosHexaID"
    * @param WemosHexaID
    */
-    public void setWemosHexaID(Long WemosHexaID){
+    public void setWemosHexaID(String WemosHexaID){
     this.WemosHexaID=WemosHexaID;
     }
     
@@ -105,7 +105,7 @@ public class Data {
    * @return WemosHexaID
    */
     @JsonProperty
-    public Long getWemosHexaID(){
+    public String getWemosHexaID(){
     return WemosHexaID;
     }
 

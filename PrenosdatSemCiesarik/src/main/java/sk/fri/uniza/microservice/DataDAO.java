@@ -29,12 +29,12 @@ public class DataDAO extends AbstractDAO<Data> {
 
     /**
     * Hladanie  v dátach cez ID
-    * @param id  
+    * @param idData  
     * @return Data ako Optional
     */
-    public Optional<Data> findById(Long id) {
-        if (id != null) {
-            return Optional.ofNullable(get(id));
+    public Optional<Data> findById(Long idData) {
+        if (idData != null) {
+            return Optional.ofNullable(get(idData));
         }
         throw new WebApplicationException(Response.status(Response.Status.NOT_FOUND).build());
     }
