@@ -39,7 +39,7 @@
                                             <div>
                                                 <input name="meno" class="element text medium" type="text" maxlength="255" value="${ucastnik.meno}"/> 
                                                 <input name="heslo" class="element text medium" type="text" maxlength="255" value="${ucastnik.heslo}"/>                                               
-                                                <#if uzivatel.id != -1>
+                                                <#if ucastnik.id != -1>
                                                  <input name="privilegia" class="element text medium" type="text" maxlength="255" value="nove privilegia"/>                                               
                                                 </#if>
 

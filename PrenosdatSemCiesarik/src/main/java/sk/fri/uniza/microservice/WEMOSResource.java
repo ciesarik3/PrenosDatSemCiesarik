@@ -45,11 +45,11 @@ public class WEMOSResource {
      * @return stránka "wemos.ftl"
      */
     @GET
-    @Path("/{id}")
+    @Path("/{idWemos}")
     @Produces(MediaType.TEXT_HTML)
     @UnitOfWork
     @RolesAllowed("BASIC_USER")
-    public WEMOSView getWEMOS(@PathParam("id") LongParam idWemos) {
+    public WEMOSView getWEMOS(@PathParam("idWemos") LongParam idWemos) {
         Optional<WEMOS> result = wemosDAO.findById(idWemos.get());
 
         if (result.isPresent()) {
@@ -64,10 +64,10 @@ public class WEMOSResource {
      * @return objekt WEMOS vo formáte JSON
      */
     @POST
-    @Path("/{id}")
+    @Path("/{idWemos}")
     @Produces(MediaType.APPLICATION_JSON)
     @UnitOfWork
-    public WEMOS getWEMOSOne(@PathParam("id") LongParam idWemos) {
+    public WEMOS getWEMOSOne(@PathParam("idWemos") LongParam idWemos) {
         Optional<WEMOS> result = wemosDAO.findById(idWemos.get());
 
         if (result.isPresent()) {
@@ -82,11 +82,11 @@ public class WEMOSResource {
      * @return stránka "wemosAddEdit.ftl"
      */
     @GET
-    @Path("/edit/{id}")
+    @Path("/edit/{idWemos}")
     @Produces(MediaType.TEXT_HTML)
     @UnitOfWork
     @RolesAllowed("BASIC_USER")
-    public WEOMSAddEditView getEditForm(@PathParam("id") LongParam idWemos) {
+    public WEOMSAddEditView getEditForm(@PathParam("idWemos") LongParam idWemos) {
         Optional<WEMOS> result = wemosDAO.findById(idWemos.get());
 
         if (result.isPresent()) {
@@ -105,21 +105,21 @@ public class WEMOSResource {
     @UnitOfWork
     @RolesAllowed("BASIC_USER")
     public View getAddForm() {
-        return new View("wemosAddEdit.ftl", StandardCharsets.UTF_8) {
+        return new View("WEMOSAddEdit.ftl", StandardCharsets.UTF_8) {
         };
     }
 
     /**
      * Rest rozhranie. Pridá WEMOS do databázy.
-     * @param hexaid 
+     * @param WemosHexaID 
      * @return wemos v JSON
      */
     @POST
     @Path("/add")
     @Produces(MediaType.APPLICATION_JSON)
     @UnitOfWork
-    public WEMOS postAddForm(@DefaultValue("none") @QueryParam("hexaid") String hexaid) {
-        return wemosDAO.create(new WEMOS(hexaid));
+    public WEMOS postAddForm(@DefaultValue("none") @QueryParam("WemosHexaID") String WemosHexaID) {
+        return wemosDAO.create(new WEMOS(WemosHexaID));
     }
     
     /**
@@ -134,7 +134,7 @@ public class WEMOSResource {
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @UnitOfWork
     @RolesAllowed("BASIC_USER")
-    public WEMOSView editWEMOS(@FormParam("id") String idWemos, @FormParam("WemosHexaID") String WemosHexaID ) {
+    public WEMOSView editWEMOS(@FormParam("idWemos") String idWemos, @FormParam("WemosHexaID") String WemosHexaID ) {
         Optional<WEMOS> result = wemosDAO.findById(Long.parseLong(idWemos));
         if (result.isPresent()) {
             result.get().setWemos(WemosHexaID);
@@ -166,11 +166,11 @@ public class WEMOSResource {
      * @return stránka zoznamu zvyšných dosiek
      */
     @GET
-    @Path("/delete/{id}")
+    @Path("/delete/{idWemos}")
     @Produces(MediaType.TEXT_HTML)
     @UnitOfWork
     @RolesAllowed("ADMIN")
-    public WEMOSListView deleteWEMOS(@PathParam("id") LongParam idWemos) {
+    public WEMOSListView deleteWEMOS(@PathParam("idWemos") LongParam idWemos) {
         Optional<WEMOS> result = wemosDAO.findById(idWemos.get());
         if (result.isPresent()) {
             wemosDAO.delete(result.get());
@@ -187,10 +187,10 @@ public class WEMOSResource {
      */
     @DELETE
     @RolesAllowed("ADMIN")
-    @Path("/{id}")
+    @Path("/{idWemos}")
     @Produces(MediaType.APPLICATION_JSON)
     @UnitOfWork
-    public WEMOS deleteWEMOS2(@PathParam("id") LongParam idWemos) {
+    public WEMOS deleteWEMOS2(@PathParam("idWemos") LongParam idWemos) {
         Optional<WEMOS> result = wemosDAO.findById(idWemos.get());
         if (result.isPresent()) {
             wemosDAO.delete(result.get());
@@ -223,7 +223,7 @@ public class WEMOSResource {
     @Produces(MediaType.APPLICATION_JSON)
     @UnitOfWork
     @RolesAllowed("BASIC_USER")
-    public List<WEMOS> listWemos() {
+    public List<WEMOS> listWEMOS() {
         return wemosDAO.findAll();
     }
 }

@@ -132,7 +132,7 @@ public class UcastnikResource {
     @Produces(MediaType.TEXT_HTML)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @UnitOfWork
-    public UcastnikView editUcastnik(@FormParam("id") String _id, @FormParam("meno") String meno,@FormParam("heslo") String heslo,@FormParam("privilege") String privilegia /* Ucastnik ucastnik*/) {
+    public UcastnikView editUcastnik(@FormParam("id") String _id, @FormParam("meno") String meno,@FormParam("heslo") String heslo,@FormParam("privilegia") String privilegia /* Ucastnik ucastnik*/) {
         Optional<Ucastnik> result = ucastnikDAO.findById(Long.parseLong(_id));
         try{
         if(!privilegia.equals("admin")&&!privilegia.equals("user")){privilegia="guest";}

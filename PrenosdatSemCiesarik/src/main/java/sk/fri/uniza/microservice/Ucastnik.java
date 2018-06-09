@@ -1,6 +1,4 @@
-
 package sk.fri.uniza.microservice;
-
 /**
  * Trieda na dafinovanie vytváranie a načítavanie učastníkov hodnotiaceho projektu
  * @author Roman Ciesarík
@@ -15,7 +13,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import org.hibernate.validator.constraints.Length;
-
 
 @Entity
 @Table(name = "Ucastnik")
@@ -102,8 +99,7 @@ public class Ucastnik {
      */
     public void setHeslo(String heslo){
     this.heslo=heslo;
-    }
-    
+    }  
     
     /**
      * Getter "privilegia"
@@ -121,9 +117,7 @@ public class Ucastnik {
     public void setPrivilegia(String privilegia){
     this.privilegia=privilegia;
     }
-    
-    
-    
+     
 //    public void setContent(String content) {
 //        this.content = content;
 //    }

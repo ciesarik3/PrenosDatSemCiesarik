@@ -17,7 +17,7 @@
             <h2>Detail wemos:</h2>
             <p></p>
          </div>
-         <h2>id: ${wemos.id}!</h2> 
+         <h2>idWemos: ${wemos.idWemos}!</h2> 
          <h2>Doska : ${wemos.WemosHexaID}!</h2>
       </div>
          <a href="/wemos/list"><i class="fas fa-th-list fa-3x"></i></a>

@@ -23,7 +23,7 @@ public class WEMOSView extends View {
      * @param wemos 
      */
     public WEMOSView(WEMOS wemos) {
-        super("wemos.ftl");
+        super("WEMOS.ftl");
         this.wemos = wemos;
     }
 

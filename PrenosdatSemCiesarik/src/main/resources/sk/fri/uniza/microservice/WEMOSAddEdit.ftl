@@ -4,7 +4,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
             <#if !(wemos??)>
-              <#assign wemos = {"id":-1,"WemosHexaID":"New Senzor"}> 
+              <#assign wemos = {"idWemos":-1,"WemosHexaID":"Nova Doska"}> 
             </#if>
             <title>Pridaj WEMOS</title>
             <link rel="stylesheet" type="text/css" href="/assets/view.css" media="all">
@@ -16,13 +16,13 @@
                         <div id="form_container">
 
                             <h1><a>Form</a></h1>
-                             <#if wemos.id != -1>
+                             <#if wemos.idWemos != -1>
                                 <form id="form_9436" class="appnitro"  method="post" action=".">
                              <#else>
                                 <form id="form_9436" class="appnitro" method="post" action="./edit">
                              </#if>
                                     <div class="form_description">
-                                    <#if wemos.id != -1>
+                                    <#if wemos.idWemos != -1>
                                         <h2>Zmen wemos</h2>
                                     <#else>
                                         <h2>Pridaj wemos</h2>
@@ -31,7 +31,7 @@
                                         </div>						
                                     <ul >
                                         <div>
-                                            <input name="id" class="element text medium" type="hidden" maxlength="255" value="${wemos.id}"/> 
+                                            <input name="idWemos" class="element text medium" type="hidden" maxlength="255" value="${wemos.idWemos}"/> 
                                             </div>
 
                                         <li id="li_1" >

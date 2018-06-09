@@ -4,7 +4,7 @@
    <head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
       <#if !(wemos??)>
-      <#assign wemos = {"id":-1,"WemosHexaID":"New WEMOS"}> 
+      <#assign wemos = {"idWemos":-1,"WemosHexaID":"New WEMOS"}> 
       </#if>
       <title>List zariadeni</title>
       <link rel="stylesheet" type="text/css" href="/assets/view.css" media="all">
@@ -12,9 +12,9 @@
       <script type="text/javascript" src="/assets/view.js"></script>
       <script type="text/javascript" src="/assets/jquery-3.3.1.min.js"></script>
       <script type="text/javascript">
-        function deleteWEMOS(id){
+        function deleteWEMOS(idWemos){
            $.ajax({
-            url: '/wemos/'+id,
+            url: '/wemos/'+idWemos,
             type: 'DELETE',
             success: function(result) {
                 alert('Item Deleted');
@@ -36,7 +36,7 @@
          <#list wemos>
          <ul>
             <#items as wemos>
-            <li><p>${wemos.id}:${wemos.WemosHexaID} | <a href="/wemos/edit/${wemos.id}"><i class="fas fa-pencil-alt"></i></a> <a href="javascript:void(0);" onclick="deleteWEMOS(${wemos.id});"><i class="fas fa-trash-alt"></i></a></p></li>
+            <li><p>${wemos.idWemos}:${wemos.WemosHexaID} | <a href="/wemos/edit/${wemos.idWemos}"><i class="fas fa-pencil-alt"></i></a> <a href="javascript:void(0);" onclick="deleteWEMOS(${wemos.idWemos});"><i class="fas fa-trash-alt"></i></a></p></li>
             </#items>
          </ul>
          <#else>

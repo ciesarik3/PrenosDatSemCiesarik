@@ -8,24 +8,24 @@ import java.util.List;
  */
 public class WEMOSListView extends View{
 
-    private List<WEMOS> Wemos;
+    private List<WEMOS> wemos;
 
     /**
      * Getter  Wemos 
      * @return Wemos
      */
     public List<WEMOS> getZariadenia() {
-        return Wemos;
+        return wemos;
     }
     
     /**
      * Konštruktor inicializuje premennú Wemos 
      * generuje web stránku
-     * @param Wemos 
+     * @param wemos 
      */
-    public WEMOSListView(List<WEMOS> Wemos) {
+    public WEMOSListView(List<WEMOS> wemos) {
         super("WEMOSList.ftl");
-        this.Wemos = Wemos;
+        this.wemos = wemos;
     }
     
     

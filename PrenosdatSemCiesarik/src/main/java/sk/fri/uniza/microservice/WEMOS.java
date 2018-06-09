@@ -89,41 +89,41 @@ public class WEMOS {
         return WemosHexaID;
     }
 
-    /**
-     * Vytvorí hash kód
-     * @return hash
-     */
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 59 * hash + (int) (this.idWemos ^ (this.idWemos >>> 32));
-        hash = 59 * hash + Objects.hashCode(this.WemosHexaID);
-        return hash;
-    }
-
-    /**
-     * Prepísanie metódy "equals" využívanej na porovnanie dvoch tried
-     * @param obj
-     * @return true, ak sú rovnaké
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final WEMOS other = (WEMOS) obj;
-        if (this.idWemos != other.idWemos) {
-            return false;
-        }
-        if (!Objects.equals(this.WemosHexaID, other.WemosHexaID)) {
-            return false;
-        }
-        return true;
-    }
+//    /**
+//     * Vytvorí hash kód
+//     * @return hash
+//     */
+//    @Override
+//    public int hashCode() {
+//        int hash = 5;
+//        hash = 59 * hash + (int) (this.idWemos ^ (this.idWemos >>> 32));
+//        hash = 59 * hash + Objects.hashCode(this.WemosHexaID);
+//        return hash;
+//    }
+//
+//    /**
+//     * Prepísanie metódy "equals" využívanej na porovnanie dvoch tried
+//     * @param obj
+//     * @return true, ak sú rovnaké
+//     */
+//    @Override
+//    public boolean equals(Object obj) {
+//        if (this == obj) {
+//            return true;
+//        }
+//        if (obj == null) {
+//            return false;
+//        }
+//        if (getClass() != obj.getClass()) {
+//            return false;
+//        }
+//        final WEMOS other = (WEMOS) obj;
+//        if (this.idWemos != other.idWemos) {
+//            return false;
+//        }
+//        if (!Objects.equals(this.WemosHexaID, other.WemosHexaID)) {
+//            return false;
+//        }
+//        return true;
+//    }
 }
