@@ -18,8 +18,8 @@
             <p></p>
          </div>
          <h2>id: ${ucastnik.id}!</h2> 
-         <h2>Content: ${ucastnik.meno}!</h2>
-         <h2>Content: ${ucastnik.heslo}!</h2>
+         <h2>Meno: ${ucastnik.meno}!</h2>
+         <h2>Heslo: ${ucastnik.heslo}!</h2>
       </div>
          <a href="/ucastnik/list"><i class="fas fa-th-list fa-3x"></i></a>
       <img id="bottom" src="/assets/bottom.png" alt="">

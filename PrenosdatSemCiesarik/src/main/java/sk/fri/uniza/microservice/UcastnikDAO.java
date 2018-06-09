@@ -44,7 +44,7 @@ public class UcastnikDAO extends AbstractDAO<Ucastnik> {
 
     /**
      * Uloží Ucastnika do databázy
-     * @param Ucastnik ktorý bude uložený
+     * @param ucastnik ktorý bude uložený
      * @return ucastnik
      */
     public Ucastnik create(Ucastnik ucastnik) {

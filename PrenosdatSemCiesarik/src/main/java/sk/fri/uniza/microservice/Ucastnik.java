@@ -18,15 +18,18 @@ import org.hibernate.validator.constraints.Length;
 
 
 @Entity
-@Table(name = "ucastniks")
+@Table(name = "Ucastnik")
 @NamedQueries({
     @NamedQuery(
-            name = "sk.fri.uniza.microservice.Saying.findAll",
+            name = "sk.fri.uniza.microservice.Ucastnik.findAll",
             query = "SELECT s from Ucastnik s"
     )
 })
 public class Ucastnik {
 
+    public Ucastnik() { // Jackson deserialization 
+    }
+    
     @Id
     @GeneratedValue
     private long id;
@@ -38,9 +41,6 @@ public class Ucastnik {
     @Column(name = "privilegia")
     private String privilegia; 
     
-    public Ucastnik() { // Jackson deserialization 
-    }
-
     /**
      * Konštruktor triedy na inicializáciu premennej "meno", "heslo" a "privilegia" 
      * @param meno Meno účastníka
@@ -133,36 +133,36 @@ public class Ucastnik {
 //        return content;
 //    }
 
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 59 * hash + (int) (this.id ^ (this.id >>> 32));
-        hash = 59 * hash + Objects.hashCode(this.meno);
-        hash = 59 * hash + Objects.hashCode(this.heslo);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Ucastnik other = (Ucastnik) obj;
-        if (this.id != other.id) {
-            return false;
-        }
-        if (!Objects.equals(this.meno, other.meno)) {
-            return false;
-        }
-        if (!Objects.equals(this.heslo, other.heslo)) {
-            return false;
-        }
-        return true;
-    }
+//    @Override
+//    public int hashCode() {
+//        int hash = 5;
+//        hash = 59 * hash + (int) (this.id ^ (this.id >>> 32));
+//        hash = 59 * hash + Objects.hashCode(this.meno);
+//        hash = 59 * hash + Objects.hashCode(this.heslo);
+//        return hash;
+//    }
+//
+//    @Override
+//    public boolean equals(Object obj) {
+//        if (this == obj) {
+//            return true;
+//        }
+//        if (obj == null) {
+//            return false;
+//        }
+//        if (getClass() != obj.getClass()) {
+//            return false;
+//        }
+//        final Ucastnik other = (Ucastnik) obj;
+//        if (this.id != other.id) {
+//            return false;
+//        }
+//        if (!Objects.equals(this.meno, other.meno)) {
+//            return false;
+//        }
+//        if (!Objects.equals(this.heslo, other.heslo)) {
+//            return false;
+//        }
+//        return true;
+//    }
 }

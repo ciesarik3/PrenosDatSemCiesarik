@@ -3,7 +3,6 @@ package sk.fri.uniza.microservice;
 import io.dropwizard.hibernate.UnitOfWork;
 import io.dropwizard.jersey.params.LongParam;
 import io.dropwizard.views.View;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Optional;
@@ -28,7 +27,7 @@ import javax.ws.rs.core.Response;
  * @author Roman Ciesarík
  */
 @Path("/ucastnik")
-@RolesAllowed("BASIC_USER")
+//@RolesAllowed("BASIC_USER")
 public class UcastnikResource {
 
     private final UcastnikDAO ucastnikDAO;
@@ -125,7 +124,7 @@ public class UcastnikResource {
      * @param _id id ucastnika
      * @param meno ucastnika
      * @param heslo ucastnika 
-     * @param pravomoc ucastnika 
+     * @param privilegia ucastnika 
      * @return stránka "ucastnik.ftl"
      */
     @POST
@@ -233,7 +232,7 @@ public class UcastnikResource {
     @RolesAllowed("BASIC_USER")
     @Produces(MediaType.APPLICATION_JSON)
     @UnitOfWork
-    public List<Ucastnik> listSayings() {
+    public List<Ucastnik> listUcastnik() {
         return ucastnikDAO.findAll();
     }
 }

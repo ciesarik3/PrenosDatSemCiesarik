@@ -14,7 +14,7 @@ public class UcastnikAddEditView extends View {
      * Getter "Ucastnik"
      * @return ucastnik
      */
-    public Ucastnik getSaying() {
+    public Ucastnik getUcastnik() {
         return ucastnik;
     }
 

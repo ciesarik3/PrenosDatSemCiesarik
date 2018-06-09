@@ -15,7 +15,7 @@ public class UcastnikListView extends View{
      * Globálny getter ucastnika s 
      * @return ucastniks 
      */
-    public List<Ucastnik> getSayings() {
+    public List<Ucastnik> getUcastniks() {
         return ucastniks;
     }
     
