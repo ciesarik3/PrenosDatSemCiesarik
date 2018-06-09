@@ -1,3 +1,3 @@
 # Prenos Dat Semestrálka Ciesarik
  
- ver 1.2
+ ver 1.21
