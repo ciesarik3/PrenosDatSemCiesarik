@@ -4,7 +4,7 @@
    <head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
       <#if !(data??)>
-      <#assign data = {"idData":-1,"znamka":"FX","WemosHexaID":"0000"}> 
+      <#assign data = {"idData":-1,"znamka":"FX","WemosHexaID":"ABC010"}> 
       </#if>
       <title>List of Data</title>
       <link rel="stylesheet" type="text/css" href="/assets/view.css" media="all">

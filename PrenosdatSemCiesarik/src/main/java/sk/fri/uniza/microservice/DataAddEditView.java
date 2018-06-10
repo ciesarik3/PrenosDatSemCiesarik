@@ -16,7 +16,6 @@ public class DataAddEditView extends View {
     public Data getData() {
         return data;
     }
-
     
     /**
     * Konštruktor DataAddEditView.

@@ -21,10 +21,10 @@ public class DataDAO extends AbstractDAO<Data> {
     }
     
     /**
-    * @param  dat Vymazanie dát v tejto premennej v databazi 
+    * @param  data Vymazanie dát v tejto premennej v databazi 
     */
-    public void delete(Data dat){
-        currentSession().delete(dat);
+    public void delete(Data data){
+        currentSession().delete(data);
     }
 
     /**
@@ -41,11 +41,11 @@ public class DataDAO extends AbstractDAO<Data> {
 
     /**
      * uloženie Dát do databázy
-     * @param dat  
+     * @param data  
      * @return Data  
      */
-    public Data create(Data dat) {
-        return persist(dat);
+    public Data create(Data data) {
+        return persist(data);
     }
 
     /**

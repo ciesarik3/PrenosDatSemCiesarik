@@ -1,13 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package sk.fri.uniza.microservice;
-
 /**
  *
- * @author hudik1
+ * @author hudik1, Ciesarik
  */
 import io.dropwizard.Application;
 import io.dropwizard.assets.AssetsBundle;
@@ -65,9 +59,11 @@ public class HelloWorldApplication extends Application<HelloWorldConfiguration> 
             Environment environment) {
 
         final UcastnikDAO dao = new UcastnikDAO(hibernateBundle.getSessionFactory());
+        final DataDAO dao2 = new DataDAO(hibernateBundle.getSessionFactory());
         final WEMOSDAO dao3 = new WEMOSDAO(hibernateBundle.getSessionFactory());
         
         final UcastnikResource ucastnikResource = new UcastnikResource(dao);
+        final DataResource dataResource = new DataResource(dao2);
         final WEMOSResource wemosResource = new WEMOSResource(dao3);
         
 
@@ -86,6 +82,7 @@ public class HelloWorldApplication extends Application<HelloWorldConfiguration> 
         
         environment.jersey().register(ucastnikResource);
         environment.jersey().register(wemosResource);  
+        environment.jersey().register(dataResource);
 
     }
 

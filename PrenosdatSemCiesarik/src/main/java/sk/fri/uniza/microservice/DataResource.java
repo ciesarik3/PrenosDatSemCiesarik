@@ -48,7 +48,7 @@ public class DataResource {
     @Produces(MediaType.APPLICATION_JSON)
     @UnitOfWork
     public Data getAddForm(@DefaultValue("0") @QueryParam("WemosHexaID") String WemosHexaID,@DefaultValue("0") @QueryParam("znamka") String znamka) {
-        return dataDAO.create(new Data(new String(znamka),new String(WemosHexaID)));
+        return dataDAO.create(new Data(znamka, WemosHexaID));
     }
       
     /**
@@ -126,7 +126,7 @@ public class DataResource {
             result.get().setZnamka(znamka);
             return new DataView(result.get());
         } else {
-            Data create = dataDAO.create(new Data(znamka,new String("0")));
+            Data create = dataDAO.create(new Data(znamka, "0"));
             return new DataView(create);
         }
     }
