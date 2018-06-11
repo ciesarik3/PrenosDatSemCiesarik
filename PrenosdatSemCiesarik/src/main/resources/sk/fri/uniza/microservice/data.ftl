@@ -17,10 +17,10 @@
             <h2>Data detail:</h2>
             <p></p>
          </div>
-         <h2>idData: ${data.idData}!</h2> 
+         <h2>id: ${data.id}!</h2> 
          <h2>znamka: ${data.znamka}!</h2>
-         <h2>id Zariadenia: ${data.WemosHexaID}!</h2>
-         <h2>Timestamp: ${data.getDatumZapisu()}!</h2>
+         <h2>id Zariadenia: ${data.wemosHexaID}!</h2>
+         <h2>Timestamp: ${data.datumZapisu}!</h2>
       </div>
          <a href="/data/list"><i class="fas fa-th-list fa-3x"></i></a>
       <img id="bottom" src="/assets/bottom.png" alt="">

@@ -2,6 +2,8 @@ package sk.fri.uniza.microservice;
 
 import io.dropwizard.hibernate.UnitOfWork;
 import io.dropwizard.jersey.params.LongParam;
+import io.dropwizard.views.View;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Optional;
 import javax.annotation.security.RolesAllowed;
@@ -50,7 +52,31 @@ public class DataResource {
     public Data getAddForm(@DefaultValue("0") @QueryParam("WemosHexaID") String WemosHexaID,@DefaultValue("0") @QueryParam("znamka") String znamka) {
         return dataDAO.create(new Data(znamka, WemosHexaID));
     }
+//    @GET
+//    @Path("/add")
+//    @Produces(MediaType.TEXT_HTML)
+//    @UnitOfWork
+//    //@RolesAllowed("BASIC_USER")
+//    public View getAddForm() {
+//        return new View("dataAddEdit.ftl", StandardCharsets.UTF_8) {
+//        };
+//    }
       
+//    /**
+//     * Rest rozhranie. Pridá WEMOS do databázy.
+//     * @param wemosHexaID 
+//     * @return wemos v JSON
+//     */
+//    @POST
+//    @Path("/add")
+//    @Produces(MediaType.APPLICATION_JSON)
+//    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+//    @UnitOfWork
+//    public Data postAddForm(@DefaultValue("0") @FormParam("WemosHexaID") String WemosHexaID,@DefaultValue("0") @FormParam("znamka") String znamka) {
+//        return dataDAO.create(new Data(znamka, WemosHexaID));
+//    }
+    
+        
     /**
      * Rest zobrazí všetky dáta zdatabázy
      * Povolenie všetci. 
@@ -70,16 +96,16 @@ public class DataResource {
      * Rest na vymazanie dát z databázy.
      * Povolenie ADMIN. 
      * Typ funkcia GET, URL http://127.0.0.1:8080/data/
-     * @param idData 
+     * @param id 
      * @return vymazané "Data" v JSON
      */    
     @DELETE
-    @RolesAllowed("ADMIN")
-    @Path("/{idData}")
+    //@RolesAllowed("ADMIN")
+    @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @UnitOfWork
-    public Data deleteData2(@PathParam("idData") LongParam idData) {
-        Optional<Data> result = dataDAO.findById(idData.get());
+    public Data deleteData2(@PathParam("id") LongParam id) {
+        Optional<Data> result = dataDAO.findById(id.get());
         if (result.isPresent()) {
             dataDAO.delete(result.get());
             return result.get();
@@ -91,15 +117,15 @@ public class DataResource {
      * Rest edit pomovou id
      * Povolenie všetci. 
      * Typ funkcia GET, URL http://127.0.0.1:8080/data/edit/
-     * @param idData 
+     * @param id 
      * @return DataAddEditView 
      */      
     @GET
-    @Path("/edit/{idData}")
+    @Path("/edit/{id}")
     @Produces(MediaType.TEXT_HTML)
     @UnitOfWork
-    public DataAddEditView getEditForm(@PathParam("idData") LongParam idData) {
-        Optional<Data> result = dataDAO.findById(idData.get());
+    public DataAddEditView getEditForm(@PathParam("id") LongParam id) {
+        Optional<Data> result = dataDAO.findById(id.get());
 
         if (result.isPresent()) {
             return new DataAddEditView(result.get());
@@ -111,7 +137,7 @@ public class DataResource {
      * Rest Edit
      * Povolenie všetci. 
      * Typ funkcia GET, URL http://127.0.0.1:8080/data/edit
-     * @param idData 
+     * @param id 
      * @param znamka 
      * @return DataView stránka
      */      
@@ -120,13 +146,14 @@ public class DataResource {
     @Produces(MediaType.TEXT_HTML)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @UnitOfWork
-    public DataView editData(@FormParam("idData") String idData, @FormParam("znamka") String znamka) {
-        Optional<Data> result = dataDAO.findById(Long.parseLong(idData));
+    public DataView editData(@FormParam("id") String id, @FormParam("znamka") String znamka, @FormParam("wemosHexaID") String wemosHexaID) {
+        Optional<Data> result = dataDAO.findById(Long.parseLong(id));
         if (result.isPresent()) {
             result.get().setZnamka(znamka);
+            result.get().getWemosHexaID(wemosHexaID);
             return new DataView(result.get());
         } else {
-            Data create = dataDAO.create(new Data(znamka, "0"));
+            Data create = dataDAO.create(new Data(znamka, "E"));
             return new DataView(create);
         }
     }
@@ -135,15 +162,15 @@ public class DataResource {
      * Rest zobrazí data s ID
      * Povolenie všetci. 
      * Typ funkcia GET, URL http://127.0.0.1:8080/data/
-     * @param idData 
+     * @param id 
      * @return DataView 
      */      
     @GET
-    @Path("/{idData}")
+    @Path("/{id}")
     @Produces(MediaType.TEXT_HTML)
     @UnitOfWork
-    public DataView getData(@PathParam("idData") LongParam idData) {
-        Optional<Data> result = dataDAO.findById(idData.get());
+    public DataView getData(@PathParam("id") LongParam id) {
+        Optional<Data> result = dataDAO.findById(id.get());
 
         if (result.isPresent()) {
             return new DataView(result.get());
@@ -151,6 +178,24 @@ public class DataResource {
 
         throw new WebApplicationException(Response.status(Response.Status.NOT_FOUND).build());
     }
+    
+//    /**
+//     * Rest rozhranie objektu Data vo formáte JSON.
+//     * @param id 
+//     * @return objekt Data vo formáte JSON
+//     */
+//    @POST
+//    @Path("/{id}")
+//    @Produces(MediaType.APPLICATION_JSON)
+//    @UnitOfWork
+//     public Data getDataOne(@PathParam("id") LongParam id) {
+//        Optional<Data> result = dataDAO.findById(id.get());
+//
+//        if (result.isPresent()) {
+//            return result.get();
+//        }
+//        throw new WebApplicationException(Response.status(Response.Status.NOT_FOUND).build());
+//    }
     
     /**
      * Rest list v formáte JSON.
@@ -161,7 +206,7 @@ public class DataResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @UnitOfWork
-    public List<Data> listDatas() {
+    public List<Data> listData() {
         return dataDAO.findAll();
     }
     
@@ -169,15 +214,15 @@ public class DataResource {
      * Rest vymaže dáta z databazy podla id
      * Povolenie všetci. 
      * Typ funkcia GET, URL http://127.0.0.1:8080/data/delete/
-     * @param idData 
+     * @param id 
      * @return DataListView  
      */      
     @GET
-    @Path("/delete/{idData}")
+    @Path("/delete/{id}")
     @Produces(MediaType.TEXT_HTML)
     @UnitOfWork
-    public DataListView deleteData(@PathParam("idData") LongParam idData) {
-        Optional<Data> result = dataDAO.findById(idData.get());
+    public DataListView deleteData(@PathParam("id") LongParam id) {
+        Optional<Data> result = dataDAO.findById(id.get());
         if (result.isPresent()) {
             dataDAO.delete(result.get());
             return new DataListView(dataDAO.findAll());

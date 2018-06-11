@@ -5,6 +5,7 @@ import java.util.Calendar;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -46,7 +47,7 @@ public class Data {
 
     
     @Id
-    @GeneratedValue
+    @GeneratedValue( strategy = GenerationType.TABLE )
     private Long idData; 
 
     @Column(name = "znamka")
@@ -57,6 +58,10 @@ public class Data {
     
     @Column(name = "datumZapisu")
     String datumZapisu;
+
+//    Data(String znamka) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
     
    /**
    * getter "idData"
@@ -72,7 +77,7 @@ public class Data {
    * @param  idData
    */    
     public void setId(long idData){
-    this.idData=idData;
+        this.idData=idData;
     }
  
    /**
@@ -124,6 +129,10 @@ public class Data {
    */    
     public void setDatumZapisu(String datumZapisu) {
         this.datumZapisu = datumZapisu;
+    }
+
+    String getWemosHexaID(String wemosHexaID) {
+       return WemosHexaID;
     }
     
 }

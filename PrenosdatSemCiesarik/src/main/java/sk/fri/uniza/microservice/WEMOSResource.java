@@ -48,7 +48,7 @@ public class WEMOSResource {
     @Path("/{id}")
     @Produces(MediaType.TEXT_HTML)
     @UnitOfWork
-    @RolesAllowed("BASIC_USER")
+   // @RolesAllowed("BASIC_USER")
     public WEMOSView getWEMOS(@PathParam("id") LongParam id) {
         Optional<WEMOS> result = wemosDAO.findById(id.get());
 
@@ -85,7 +85,7 @@ public class WEMOSResource {
     @Path("/edit/{id}")
     @Produces(MediaType.TEXT_HTML)
     @UnitOfWork
-    @RolesAllowed("BASIC_USER")
+   // @RolesAllowed("BASIC_USER")
     public WEOMSAddEditView getEditForm(@PathParam("id") LongParam id) {
         Optional<WEMOS> result = wemosDAO.findById(id.get());
 
@@ -103,7 +103,7 @@ public class WEMOSResource {
     @Path("/add")
     @Produces(MediaType.TEXT_HTML)
     @UnitOfWork
-    @RolesAllowed("BASIC_USER")
+    //@RolesAllowed("BASIC_USER")
     public View getAddForm() {
         return new View("WEMOSAddEdit.ftl", StandardCharsets.UTF_8) {
         };
@@ -134,7 +134,7 @@ public class WEMOSResource {
     @Produces(MediaType.TEXT_HTML)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @UnitOfWork
-    @RolesAllowed("BASIC_USER")
+    //@RolesAllowed("BASIC_USER")
     public WEMOSView editWEMOS(@FormParam("id") String id, @FormParam("wemosHexaID") String wemosHexaID ) {
         Optional<WEMOS> result = wemosDAO.findById(Long.parseLong(id));
         if (result.isPresent()) {
@@ -155,7 +155,7 @@ public class WEMOSResource {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @UnitOfWork
-    @RolesAllowed("BASIC_USER")
+    //@RolesAllowed("BASIC_USER")
     public WEMOS createWEMOS(WEMOS wemos) {
         return wemosDAO.create(wemos);
     }
@@ -170,7 +170,7 @@ public class WEMOSResource {
     @Path("/delete/{id}")
     @Produces(MediaType.TEXT_HTML)
     @UnitOfWork
-    @RolesAllowed("ADMIN")
+    //@RolesAllowed("ADMIN")
     public WEMOSListView deleteWEMOS(@PathParam("id") LongParam id) {
         Optional<WEMOS> result = wemosDAO.findById(id.get());
         if (result.isPresent()) {
@@ -187,7 +187,7 @@ public class WEMOSResource {
      * @return objek WEMOS v JSON
      */
     @DELETE
-    @RolesAllowed("ADMIN")
+    //@RolesAllowed("ADMIN")
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @UnitOfWork
@@ -209,7 +209,7 @@ public class WEMOSResource {
     @Path("/list")
     @Produces(MediaType.TEXT_HTML)
     @UnitOfWork
-    @RolesAllowed("BASIC_USER")
+    //@RolesAllowed("BASIC_USER")
     public WEMOSListView getWEMOS() {
         return new WEMOSListView(wemosDAO.findAll());
 
@@ -223,7 +223,7 @@ public class WEMOSResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @UnitOfWork
-    @RolesAllowed("BASIC_USER")
+    //@RolesAllowed("BASIC_USER")
     public List<WEMOS> listWEMOS() {
         return wemosDAO.findAll();
     }
