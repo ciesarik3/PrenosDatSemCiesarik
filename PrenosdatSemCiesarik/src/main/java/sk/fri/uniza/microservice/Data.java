@@ -63,7 +63,7 @@ public class Data {
    * @return idData 
    */
     @JsonProperty
-    public Long getIdData() {
+    public Long getId() {
         return idData;
     }
   
@@ -71,7 +71,7 @@ public class Data {
    * setter "idData"
    * @param  idData
    */    
-    public void setIdData(long idData){
+    public void setId(long idData){
     this.idData=idData;
     }
  

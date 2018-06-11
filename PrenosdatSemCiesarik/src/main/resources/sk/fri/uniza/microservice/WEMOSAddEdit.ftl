@@ -4,7 +4,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
             <#if !(wemos??)>
-              <#assign wemos = {"idWemos":-1,"WemosHexaID":"Nova Doska"}> 
+              <#assign wemos = {"id":-1,"wemos":"Nova Doska"}> 
             </#if>
             <title>Pridaj WEMOS</title>
             <link rel="stylesheet" type="text/css" href="/assets/view.css" media="all">
@@ -16,13 +16,13 @@
                         <div id="form_container">
 
                             <h1><a>Form</a></h1>
-                             <#if wemos.idWemos != -1>
-                                <form id="form_9436" class="appnitro"  method="post" action=".">
+                             <#if wemos.id = -1>
+                                <form id="form_9436" class="appnitro"  method="post" action="./add">
                              <#else>
-                                <form id="form_9436" class="appnitro" method="post" action="./edit">
+                                <form id="form_9436" class="appnitro" method="post" action=" ">
                              </#if>
                                     <div class="form_description">
-                                    <#if wemos.idWemos != -1>
+                                    <#if wemos.id != -1>
                                         <h2>Zmen wemos</h2>
                                     <#else>
                                         <h2>Pridaj wemos</h2>
@@ -31,13 +31,13 @@
                                         </div>						
                                     <ul >
                                         <div>
-                                            <input name="idWemos" class="element text medium" type="hidden" maxlength="255" value="${wemos.idWemos}"/> 
+                                            <input name="id" class="element text medium" type="hidden" maxlength="255" value="${wemos.id}"/> 
                                             </div>
 
                                         <li id="li_1" >
                                             <label class="description" for="element_1">WEMOS </label>
                                             <div>
-                                                <input name="WemosHexaID" class="element text medium" type="text" maxlength="255" value="${wemos.WemosHexaID}"/> 
+                                                <input name="wemosHexaID" class="element text medium" type="text" maxlength="255" value="${wemos.wemos}"/> 
                                                 </div> 
                                             </li>
 

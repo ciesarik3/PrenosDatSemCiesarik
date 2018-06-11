@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -14,7 +15,7 @@ import org.hibernate.validator.constraints.Length;
  * @author Roman Ciesarík
  */
 @Entity
-@Table(name = "WEMOS")
+@Table(name = "wemos")
 @NamedQueries({
     @NamedQuery(
             name = "sk.fri.uniza.microservice.WEMOS.findAll",
@@ -24,7 +25,9 @@ import org.hibernate.validator.constraints.Length;
 public class WEMOS {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(
+        strategy = GenerationType.TABLE
+    )
     private long idWemos;
      
     @Length(max = 20)

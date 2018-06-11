@@ -14,7 +14,7 @@ public class WEOMSAddEditView extends View {
      * Getter "wemos"
      * @return wemos
      */
-    public WEMOS getWEMOS() {
+    public WEMOS getWemos() {
         return wemos;
     }
 

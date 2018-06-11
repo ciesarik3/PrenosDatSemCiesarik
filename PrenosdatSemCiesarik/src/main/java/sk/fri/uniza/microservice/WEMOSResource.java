@@ -41,16 +41,16 @@ public class WEMOSResource {
 
     /**
      * Rest rozhranie objektu WEMOS.
-     * @param idWemos 
+     * @param id 
      * @return stránka "wemos.ftl"
      */
     @GET
-    @Path("/{idWemos}")
+    @Path("/{id}")
     @Produces(MediaType.TEXT_HTML)
     @UnitOfWork
     @RolesAllowed("BASIC_USER")
-    public WEMOSView getWEMOS(@PathParam("idWemos") LongParam idWemos) {
-        Optional<WEMOS> result = wemosDAO.findById(idWemos.get());
+    public WEMOSView getWEMOS(@PathParam("id") LongParam id) {
+        Optional<WEMOS> result = wemosDAO.findById(id.get());
 
         if (result.isPresent()) {
             return new WEMOSView(result.get());
@@ -60,15 +60,15 @@ public class WEMOSResource {
     
     /**
      * Rest rozhranie objektu WEMOS vo formáte JSON.
-     * @param idWemos 
+     * @param id 
      * @return objekt WEMOS vo formáte JSON
      */
     @POST
-    @Path("/{idWemos}")
+    @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @UnitOfWork
-    public WEMOS getWEMOSOne(@PathParam("idWemos") LongParam idWemos) {
-        Optional<WEMOS> result = wemosDAO.findById(idWemos.get());
+    public WEMOS getWEMOSOne(@PathParam("id") LongParam id) {
+        Optional<WEMOS> result = wemosDAO.findById(id.get());
 
         if (result.isPresent()) {
             return result.get();
@@ -78,16 +78,16 @@ public class WEMOSResource {
     
     /**
      * Rest rozhranie pre zmenu udajov daného Wemos-u
-     * @param idWemos 
+     * @param id 
      * @return stránka "wemosAddEdit.ftl"
      */
     @GET
-    @Path("/edit/{idWemos}")
+    @Path("/edit/{id}")
     @Produces(MediaType.TEXT_HTML)
     @UnitOfWork
     @RolesAllowed("BASIC_USER")
-    public WEOMSAddEditView getEditForm(@PathParam("idWemos") LongParam idWemos) {
-        Optional<WEMOS> result = wemosDAO.findById(idWemos.get());
+    public WEOMSAddEditView getEditForm(@PathParam("id") LongParam id) {
+        Optional<WEMOS> result = wemosDAO.findById(id.get());
 
         if (result.isPresent()) {
             return new WEOMSAddEditView(result.get());
@@ -111,21 +111,22 @@ public class WEMOSResource {
 
     /**
      * Rest rozhranie. Pridá WEMOS do databázy.
-     * @param WemosHexaID 
+     * @param wemosHexaID 
      * @return wemos v JSON
      */
     @POST
     @Path("/add")
     @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @UnitOfWork
-    public WEMOS postAddForm(@DefaultValue("none") @QueryParam("WemosHexaID") String WemosHexaID) {
-        return wemosDAO.create(new WEMOS(WemosHexaID));
+    public WEMOS postAddForm(@DefaultValue("none") @FormParam("wemosHexaID") String wemosHexaID) {
+        return wemosDAO.create(new WEMOS(wemosHexaID));
     }
     
     /**
      * Rest rozhranie na zmenu parametrov WEMOS-u.
-     * @param idWemos id Wemos v databáze, ktorého parametre majú byť zmenené
-     * @param WemosHexaID nový typ Wemos
+     * @param id id Wemos v databáze, ktorého parametre majú byť zmenené
+     * @param wemosHexaID nový typ Wemos
      * @return stránku v prehliadači definovaanú dokumentom "wemosAddEdit.ftl"
      */
     @POST
@@ -134,13 +135,13 @@ public class WEMOSResource {
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @UnitOfWork
     @RolesAllowed("BASIC_USER")
-    public WEMOSView editWEMOS(@FormParam("idWemos") String idWemos, @FormParam("WemosHexaID") String WemosHexaID ) {
-        Optional<WEMOS> result = wemosDAO.findById(Long.parseLong(idWemos));
+    public WEMOSView editWEMOS(@FormParam("id") String id, @FormParam("wemosHexaID") String wemosHexaID ) {
+        Optional<WEMOS> result = wemosDAO.findById(Long.parseLong(id));
         if (result.isPresent()) {
-            result.get().setWemos(WemosHexaID);
+            result.get().setWemos(wemosHexaID);
             return new WEMOSView(result.get());
         } else {
-            WEMOS create = wemosDAO.create(new WEMOS(WemosHexaID));
+            WEMOS create = wemosDAO.create(new WEMOS(wemosHexaID));
             return new WEMOSView(create);
         }
     }
@@ -160,18 +161,18 @@ public class WEMOSResource {
     }
 
     /**
-     * Rest rozhranie vymazanie z databázy daný idWemos.
+     * Rest rozhranie vymazanie z databázy daný id.
      * Povolenie ADMIN. 
-      *@param idWemos Wemos, ktoré má byť vymazané.
+      *@param id Wemos, ktoré má byť vymazané.
      * @return stránka zoznamu zvyšných dosiek
      */
     @GET
-    @Path("/delete/{idWemos}")
+    @Path("/delete/{id}")
     @Produces(MediaType.TEXT_HTML)
     @UnitOfWork
     @RolesAllowed("ADMIN")
-    public WEMOSListView deleteWEMOS(@PathParam("idWemos") LongParam idWemos) {
-        Optional<WEMOS> result = wemosDAO.findById(idWemos.get());
+    public WEMOSListView deleteWEMOS(@PathParam("id") LongParam id) {
+        Optional<WEMOS> result = wemosDAO.findById(id.get());
         if (result.isPresent()) {
             wemosDAO.delete(result.get());
             return new WEMOSListView(wemosDAO.findAll());
@@ -180,18 +181,18 @@ public class WEMOSResource {
     }
     
      /**
-     * Rest rozhranie, vymaže WEMOS s idWemos.
+     * Rest rozhranie, vymaže WEMOS s id.
      * Povolenie ADMIN. 
-      *@param idWemos
+      *@param id
      * @return objek WEMOS v JSON
      */
     @DELETE
     @RolesAllowed("ADMIN")
-    @Path("/{idWemos}")
+    @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @UnitOfWork
-    public WEMOS deleteWEMOS2(@PathParam("idWemos") LongParam idWemos) {
-        Optional<WEMOS> result = wemosDAO.findById(idWemos.get());
+    public WEMOS deleteWEMOS2(@PathParam("id") LongParam id) {
+        Optional<WEMOS> result = wemosDAO.findById(id.get());
         if (result.isPresent()) {
             wemosDAO.delete(result.get());
             return result.get();

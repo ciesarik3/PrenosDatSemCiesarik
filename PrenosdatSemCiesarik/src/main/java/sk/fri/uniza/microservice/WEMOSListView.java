@@ -14,7 +14,7 @@ public class WEMOSListView extends View{
      * Getter  Wemos 
      * @return Wemos
      */
-    public List<WEMOS> getZariadenia() {
+    public List<WEMOS> getWemos() {
         return wemos;
     }
     

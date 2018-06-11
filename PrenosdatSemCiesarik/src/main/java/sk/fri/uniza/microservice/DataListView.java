@@ -8,22 +8,22 @@ import java.util.List;
  */
 public class DataListView extends View{
 
-    private List<Data> datas;
+    private List<Data> data;
 
     /**
-     * Getter "datas"
-     * @return datas 
+     * Getter "data"
+     * @return data 
      */
-    public List<Data> getDatas() {
-        return datas;
+    public List<Data> getData() {
+        return data;
     }
     
     /**
      * Konštruktor innicializuje a vytvorí stránaku "dataList.ftl"
-     * @param datas 
+     * @param data
      */
-    public DataListView(List<Data> datas) {
+    public DataListView(List<Data> data) {
         super("dataList.ftl");
-        this.datas = datas;
+        this.data = data;
     }
 }

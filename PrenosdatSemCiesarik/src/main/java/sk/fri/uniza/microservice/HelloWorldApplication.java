@@ -23,7 +23,7 @@ public class HelloWorldApplication extends Application<HelloWorldConfiguration> 
 
     static SessionFactory buildSessionFactory;
 
-    private final HibernateBundle<HelloWorldConfiguration> hibernateBundle = new HibernateBundle<HelloWorldConfiguration>(Ucastnik.class) {
+    private final HibernateBundle<HelloWorldConfiguration> hibernateBundle = new HibernateBundle<HelloWorldConfiguration>(Ucastnik.class,WEMOS.class,Data.class) {
         @Override
         public PooledDataSourceFactory getDataSourceFactory(HelloWorldConfiguration t) {
             return t.getDataSourceFactory();

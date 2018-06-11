@@ -25,6 +25,6 @@
     <property name="hbm2ddl.auto">create</property>
     <!-- Names the annotated entity class -->
     <mapping class="sk.fri.uniza.microservice.Ucastnik"/>
-     <mapping class="sk.fri.uniza.microservice.WEMOS"/>
+    <mapping class="sk.fri.uniza.microservice.WEMOS"/>
   </session-factory>
 </hibernate-configuration>
