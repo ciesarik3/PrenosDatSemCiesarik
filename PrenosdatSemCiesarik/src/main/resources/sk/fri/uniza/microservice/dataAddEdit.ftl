@@ -42,7 +42,7 @@
                                         <li id="li_1" >
                                             <label class="description" for="element_1">Zmen znamku</label>
                                             <div>
-                                                <input name="wemosHexaID"   class="element text medium" type="text" maxlength="255" value="${data.wemosHexaID}"/> 
+                                             <#--    <input name="wemosHexaID"   class="element text medium" type="text" maxlength="255" value="${data.wemosHexaID}"/>   -->
                                                 <input name="znamka"        class="element text medium" type="text" maxlength="255" value="${data.znamka}"/> 
                                             </div> 
                                             </li>

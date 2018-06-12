@@ -15,6 +15,10 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
 
+/**
+ *
+ * @author Roman-°°1´ˇú(__$ß
+ */
 public class HelloWorldConfiguration extends Configuration {
 
     @Valid

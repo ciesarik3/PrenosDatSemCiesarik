@@ -14,6 +14,10 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import org.hibernate.validator.constraints.Length;
 
+/**
+ *
+ * @author Roman-°°1´ˇú(__$ß
+ */
 @Entity
 @Table(name = "Ucastnik")
 @NamedQueries({
@@ -24,6 +28,9 @@ import org.hibernate.validator.constraints.Length;
 })
 public class Ucastnik {
 
+    /**
+     * deserializácia
+     */
     public Ucastnik() { // Jackson deserialization 
     }
     

@@ -42,7 +42,7 @@
             </#items>
          </ul>
          <#else>
-         <p>No ucastniks
+         <p>No ucastnik
             </#list>
       </div>
         <a href="/ucastnik/add"><i class="fas fa-plus-circle fa-3x"></i></a>

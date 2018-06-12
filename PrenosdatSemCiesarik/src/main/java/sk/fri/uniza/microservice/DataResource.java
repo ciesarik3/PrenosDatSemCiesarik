@@ -139,6 +139,7 @@ public class DataResource {
      * Typ funkcia GET, URL http://127.0.0.1:8080/data/edit
      * @param id 
      * @param znamka 
+     * @param wemosHexaID 
      * @return DataView stránka
      */      
     @POST
@@ -153,7 +154,7 @@ public class DataResource {
             result.get().getWemosHexaID(wemosHexaID);
             return new DataView(result.get());
         } else {
-            Data create = dataDAO.create(new Data(znamka, "E"));
+            Data create = dataDAO.create(new Data(znamka, wemosHexaID));
             return new DataView(create);
         }
     }

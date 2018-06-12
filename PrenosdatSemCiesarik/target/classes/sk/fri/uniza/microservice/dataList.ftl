@@ -44,6 +44,7 @@
             </#list>
       </div>          
 
+      <a href="/data/add"><i class="fas fa-plus-circle fa-3x"></i></a>
 
       <img id="bottom" src="/assets/bottom.png" alt="">
    </body>

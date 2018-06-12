@@ -35,8 +35,8 @@
          </div>
          <#list wemos>
          <ul>
-            <#items as wemos>
-            <li><p>${wemos.id}:${wemos.wemos} | <a href="/wemos/edit/${wemos.id}"><i class="fas fa-pencil-alt"></i></a> <a href="javascript:void(0);" onclick="deleteWEMOS(${wemos.id});"><i class="fas fa-trash-alt"></i></a></p></li>
+            <#items as wemos>               <#--<a href="/wemos/edit/${wemos.id}"><i class="fas fa-pencil-alt"></i></a>  -->
+            <li><p>${wemos.id}:${wemos.wemos} | <a href="javascript:void(0);" onclick="deleteWEMOS(${wemos.id});"><i class="fas fa-trash-alt"></i></a></p></li>
             </#items>
          </ul>
          <#else>
@@ -45,8 +45,6 @@
       </div>
         <a href="/wemos/add"><i class="fas fa-plus-circle fa-3x"></i></a>
           
-
-
       <img id="bottom" src="/assets/bottom.png" alt="">
    </body>
 </html>
