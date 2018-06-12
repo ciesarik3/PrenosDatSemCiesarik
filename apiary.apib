@@ -1,0 +1,293 @@
+FORMAT: 1A
+HOST: http://127.0.0.1:8080/
+
+# Semestralna praca
+
+Pridanie a nalogovanie sa užívateľa pridanie odobratie a zmena dosky a aj hodnôt čiže dát
+
+## Pridá účastníka [/ucastnik/add{?meno,heslo,privilegia}]
++ Parameters
+    + meno (optional) - A query variable DefaultValue="none"
+    + heslo (optional) - Another query variable DefaultValue="none"
+    + privilegia (optional) - Another query variable DefaultValue="guest"
+
+### Pridá účastníka [POST]
+
++ Response 200 (application/json)
+
+        {
+        "id": 1,
+        "meno": "none",
+        "heslo": "none",
+        "privilegia": "admin"
+        }
+        
+## Vráti účastníka [/ucastnik/{id}]
++ Parameters
+    + id - A path variable (id účastníka)
+
+### Vráti účastníka [GET]
+RolesAllowed("BASIC_USER")
+
++ Response 200 (sk.fri.uniza.microservice.ucastnik.ftl)
+
+### Vymaže účastníka [DELETE]
+RolesAllowed("ADMIN")
+
++ Response 200 (application/json)
+
+        {
+        "id": 1,
+        "meno": "none",
+        "heslo": "none",
+        "privilegia": "admin"
+        }
+        
+## Zmení parametre účastníka [/ucastnik/edit/{id}]
+RolesAllowed("ADMIN")
++ Parameters
+    + id - A path variable (id účastníka)
+
+### Zmení parametre účastníka [GET]
+
++ Response 200 (sk.fri.uniza.microservice.ucastnikAddEdit.ftl)
+
+## Pridá účastníka [/ucastnik/add]
+### Pridá účastníka [GET]
+
++ Response 200 (sk.fri.uniza.microservice.ucastnikAddEdit.ftl)
+
+
+## Zmení parametre účastníka [/ucastnik/edit]
+### Zmení parametre účastníka [POST]
++ Attributes
+    + param1: id (string) - FormParam id požívateľa
+    + param2: meno (string) - FormParam meno požívateľa
+    + param3: heslo (string) - FormParam heslo požívateľa
+    + param4: privilegia (string) - FormParam privilegia požívateľa
+
++ Request (application/x-www-form-urlencoded)
+
++ Response 200 (sk.fri.uniza.microservice.ucastnik.ftl)
+        
+## Vymaže účastníka [/ucastnik/delete/{id}]
+RolesAllowed("ADMIN")
++ Parameters
+    + id - A path variable (id účastníka)
+
+### Vymaže účastníka [GET]
+
++ Response 200 (sk.fri.uniza.microservice.ucastnik.ftl)
+
+## Zobrazí list použivateľov [/ucastnik/list]
+RolesAllowed("BASIC_USER")
+
+### Zobrazí list použivateľov [GET]
+
++ Response 200 (sk.fri.uniza.microservice.ucastnikList.ftl)
+
+
+## Vráti všetkých použivateľov [/ucastnik]
+RolesAllowed("BASIC_USER")
+
+### Vráti všetkých použivateľov [GET]
+
++ Response 200 (application/json)
+
+        [
+        {
+        "id": 1,
+        "meno": "none",
+        "heslo": "none",
+        "privilegia": "admin"
+        }
+        ]
+
+### Vytvorí účastníka [POST]
+
++ Response 200 (application/json)
+
+        {
+        "id": 1,
+        "meno": "none",
+        "heslo": "none",
+        "privilegia": "admin"
+        }            
+
+
+## Pridá dáta [/data/add{?WemosHexaID,znamka}]
++ Parameters
+    + WemosHexaID (optional) - A query string variable DefaultValue="0"
+    + znamka (optional) - Another string query variable DefaultValue="0"
+
+### Pridá dáta [GET]
+
++ Response 200 (application/json)
+
+        {
+        "id":1,
+        "znamka":0,
+        "WemosHexaID":0,
+        "datumZapisu":"Y:2018 M:6 D:11 H:23 m:45"
+        }
+
+## Zobrazí list všetkých dát [/data/list]
+
+### Zobrazí list všetkých dát [GET]
+
++ Response 200 (sk.fri.uniza.microservice.dataList.ftl)
+
+## Vymaže dáta [/data/{id}]
+
++ Parameters
+    + id  - A path LongParam variable 
+    
+### Vymaže dáta [DELETE]
+
++ Response 200 (sk.fri.uniza.microservice.dataList.ftl)
+
+### Zmení parametre dát [GET]
+
++ Response 200 (sk.fri.uniza.microservice.data.ftl)
+
+## Zmení parametre dát [/data/edit/{id}]
+
++ Parameters
+    + id  - A path LongParam variable 
+    
+### Zmení parametre dát [GET]
+
++ Response 200 (sk.fri.uniza.microservice.dataAddEdit.ftl)
+
+## Zmení parametre dát [/data/edit]
+
+### Zmení parametre dát [POST]
++ Attributes
+    + param1: id (string) - FormParam id wemos
+    + param2: znamka (string) - FormParam znamka dát
++ Response 200 (sk.fri.uniza.microservice.data.ftl)
+
+## Vráti JSON list dát [/data]
+
+### Vráti JSON list dát [GET]
+
++ Response 200 (application/json)
+
+        [
+        {
+        "id":1,
+        "znamka":0,
+        "WemosHexaIDariadenia":0,
+        "datumZapisu":"Y:2018 M:6 D:11 H:23 m:45"
+        }
+        ]
+
+### Vytvorí dáta [POST]
+
++ Response 200 (sk.fri.uniza.microservice.data.ftl) 
+
+## Vymaže dáta [/data/delete/{id}]
+
++ Parameters
+    + id  - A path LongParam variable 
+    
+### Vymaže dáta [GET]
+
++ Response 200 (sk.fri.uniza.microservice.dataList.ftl)
+
+## Vráti  WEMOS [/WEMOS/{id}]
+
++ Parameters
+    + id  - A path LongParam variable 
+    
+### Vráti WEMOS [GET]
+
++ Response 200 (sk.fri.uniza.microservice.WEMOS.ftl)
+
+### Vymaže WEMOS [DELETE]
+
++ Response 200 (application/json)
+
+        {
+        "id":1,
+        "WemosHexaID":"AABCD11"
+        }
+        
+### Vráti WEMOS ako JSON [POST]
+
++ Response 200 (application/json)
+
+        {
+        "id":1,
+        "WemosHexaID":"AABCD11"
+        }
+        
+## Zmení parametre zariadenia [/WEMOS/edit/{id}]
+
++ Parameters
+    + id  - A path LongParam variable 
+    
+### Zmení parametre zariadenia [GET]
+
++ Response 200 (sk.fri.uniza.microservice.WEMOSAddEdit.ftl)
+        
+## Pridá WEMOS [/WEMOS/add]
+    
+### Pridá WEMOS [GET]
+
++ Response 200 (sk.fri.uniza.microservice.WEMOSAddEdit.ftl)
+    
+### Pridá WEMOS vráti JSON [POST]
+
++ Response 200 (application/json)
+
+        {
+        "id":1,
+        "WemosHexaID":"AABCD11"
+        }
+        
+## Zmení parametre zariadenia [/WEMOS/edit]
+
+### Zmení parametre zariadenia [POST]
++ Attributes
+    + param1: id (string) - FormParam id zariadenia
+    + param2: WemosHexaID (string) - FormParam WemosHexaID
+    
++ Response 200 (sk.fri.uniza.microservice.WEMOS.ftl)
+
+## Vytvorí WEMOS [/WEMOS]
+
+### Vytvorí WEMOS [POST]
+
++ Response 200 (application/json)
+
+        {
+        "id":1,
+        "WemosHexaID":"AABCD11"
+        }
+        
+### Vráti list zariadení vo formáte JSON [GET]
+
++ Response 200 (application/json)
+
+        [
+        {
+        "id":1,
+        "WemosHexaID":"AABCD11"
+        }
+        ]
+        
+## Vymaže WEMOS [/WEMOS/delete/{id}]
+
++ Parameters
+    + id  - A path LongParam variable 
+    
+### Vymaže WEMOS [GET]
+
++ Response 200 (sk.fri.uniza.microservice.WEMOSList.ftl)
+
+## Vymaže WEMOS [/WEMOS/list]
+    
+### Vymaže WEMOS [GET]
+
++ Response 200 (sk.fri.uniza.microservice.WEMOSList.ftl)
